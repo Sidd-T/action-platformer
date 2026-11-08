@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Moveset" load_steps=4 format=3 uid="uid://uda7ceydpa1v"]
+
+[ext_resource type="Script" uid="uid://cjls18m1pualh" path="res://src/combat/attacks/moveset.gd" id="1_q6h2v"]
+[ext_resource type="Resource" uid="uid://cd4ldb270exye" path="res://src/combat/attacks/data/ground_side_heavy.tres" id="1_qh5a5"]
+[ext_resource type="Resource" uid="uid://bhcikbcsngjus" path="res://src/combat/attacks/data/ground_side_light.tres" id="2_igybh"]
+
+[resource]
+script = ExtResource("1_q6h2v")
+ground_light_side = ExtResource("2_igybh")
+ground_heavy_side = ExtResource("1_qh5a5")
+metadata/_custom_type_script = "uid://cjls18m1pualh"

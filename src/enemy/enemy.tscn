@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7j4yf0ccrcvd"]
+
+[ext_resource type="Script" uid="uid://qjn8kkfif1gf" path="res://src/enemy/enemy.gd" id="1_pql7r"]
+[ext_resource type="Texture2D" uid="uid://dt7n0p1wg8b3s" path="res://icon.svg" id="2_fuy6v"]
+[ext_resource type="Script" uid="uid://d3rexi60kebfv" path="res://src/combat/hurtbox.gd" id="3_njrcb"]
+[ext_resource type="Script" uid="uid://bwbxypkqm7bgl" path="res://src/state_machine/state_machine.gd" id="4_cju2l"]
+[ext_resource type="Script" uid="uid://dxg81evx5vpl6" path="res://src/enemy/states/enemy_idle_state.gd" id="5_e2x2n"]
+[ext_resource type="Script" uid="uid://djjkee63yc5nr" path="res://src/enemy/states/enemy_hitstun_state.gd" id="6_3tv5q"]
+[ext_resource type="Script" uid="uid://b2cdfgjj42kq7" path="res://src/enemy/states/enemy_held_state.gd" id="7_d6ssb"]
+[ext_resource type="Script" uid="uid://banxts2uwu8yw" path="res://src/enemy/states/enemy_dead_state.gd" id="8_y3olm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pql7r"]
+size = Vector2(123, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuy6v"]
+size = Vector2(136, 130)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_pql7r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_pql7r")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2_fuy6v")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_njrcb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_fuy6v")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -21.0
+offset_top = -101.0
+offset_right = 19.0
+offset_bottom = -78.0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("target_node", "default_state")]
+script = ExtResource("4_cju2l")
+target_node = NodePath("..")
+default_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("5_e2x2n")
+
+[node name="HitstunState" type="Node" parent="StateMachine"]
+script = ExtResource("6_3tv5q")
+
+[node name="HeldState" type="Node" parent="StateMachine"]
+script = ExtResource("7_d6ssb")
+
+[node name="DeadState" type="Node" parent="StateMachine"]
+script = ExtResource("8_y3olm")

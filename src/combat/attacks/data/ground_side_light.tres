@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=6 format=3 uid="uid://bhcikbcsngjus"]
+
+[ext_resource type="Resource" uid="uid://dbsh802p0h6lf" path="res://src/combat/attacks/data/simple_swing.tres" id="1_88yht"]
+[ext_resource type="Script" uid="uid://b0qqyn6887udr" path="res://src/combat/hitbox_segment.gd" id="1_jre0w"]
+[ext_resource type="Script" uid="uid://dbs5gh7d2vhp4" path="res://src/combat/motion_segment.gd" id="2_88yht"]
+[ext_resource type="Script" uid="uid://cxxc4mr83wq4u" path="res://src/combat/attacks/attack_data.gd" id="3_x4whu"]
+
+[sub_resource type="Resource" id="Resource_88yht"]
+script = ExtResource("1_jre0w")
+offset_start = Vector2(36, -33)
+offset_end = Vector2(36, -33)
+size_start = Vector2(60, 70)
+size_end = Vector2(60, 70)
+metadata/_custom_type_script = "uid://b0qqyn6887udr"
+
+[resource]
+script = ExtResource("3_x4whu")
+attack_name = &"ground_side_light"
+hit = ExtResource("1_88yht")
+hitbox_segments = Array[ExtResource("1_jre0w")]([SubResource("Resource_88yht")])
+metadata/_custom_type_script = "uid://cxxc4mr83wq4u"

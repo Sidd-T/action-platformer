@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=9 format=3 uid="uid://cd4ldb270exye"]
+
+[ext_resource type="Resource" uid="uid://dbsh802p0h6lf" path="res://src/combat/attacks/data/simple_swing.tres" id="1_rs4q8"]
+[ext_resource type="Script" uid="uid://b0qqyn6887udr" path="res://src/combat/hitbox_segment.gd" id="2_r4lnh"]
+[ext_resource type="Script" uid="uid://dbs5gh7d2vhp4" path="res://src/combat/motion_segment.gd" id="3_ox03n"]
+[ext_resource type="Script" uid="uid://cxxc4mr83wq4u" path="res://src/combat/attacks/attack_data.gd" id="4_g7n1e"]
+
+[sub_resource type="Curve" id="Curve_bsa14"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_cmapu"]
+script = ExtResource("2_r4lnh")
+start_time = 0.2
+end_time = 0.4
+offset_start = Vector2(36, -33)
+offset_end = Vector2(90, -33)
+size_start = Vector2(60, 70)
+size_end = Vector2(90, 90)
+ease_curve = SubResource("Curve_bsa14")
+metadata/_custom_type_script = "uid://b0qqyn6887udr"
+
+[sub_resource type="Curve" id="Curve_ybx8p"]
+_data = [Vector2(0.030042917, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_x15b0"]
+script = ExtResource("3_ox03n")
+speed_curve = SubResource("Curve_ybx8p")
+metadata/_custom_type_script = "uid://dbs5gh7d2vhp4"
+
+[resource]
+script = ExtResource("4_g7n1e")
+attack_name = &"ground_side_heavy"
+hit = ExtResource("1_rs4q8")
+hitbox_segments = Array[ExtResource("2_r4lnh")]([SubResource("Resource_cmapu")])
+motion_segments = Array[ExtResource("3_ox03n")]([SubResource("Resource_x15b0")])
+metadata/_custom_type_script = "uid://cxxc4mr83wq4u"
